@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>OCR Carta Identità</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3f51b5">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+  <script src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+  <h1>OCR Carta Identità → Google Sheet</h1>
+  <button id="authorizeBtn">🔑 Login Google</button>
+  <button id="signoutBtn" style="display:none;">Logout</button>
+  <input type="file" id="imageUpload" accept="image/*">
+  <button id="processBtn">Estrai e invia</button>
+  <pre id="ocrResult">Carica l’immagine e clicca su “Estrai e invia”</pre>
+
+  <script src="google-auth.js"></script>
+  <script src="ocr.js"></script>
+  <script src="sheet.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('✅ SW registrato!'))
+        .catch(err => console.error('❌ SW errore:', err));
+    }
+  </script>
+</body>
+</html>
